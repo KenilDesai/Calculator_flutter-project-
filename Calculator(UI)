@@ -1,0 +1,117 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => MyHomeState();
+}
+
+class MyHomeState extends State<MyHomePage> {
+  int count = 0;
+  var no1 = TextEditingController();
+  var no2 = TextEditingController();
+  var result = "";
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Couner')),
+      body: Container(
+        color: Colors.blue.shade100,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: no1,
+              ),
+              TextField(
+                keyboardType: TextInputType.number,
+                controller: no2,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        var No1 = int.parse(no1.text.toString());
+                        var No2 = int.parse(no2.text.toString());
+
+                        var sum = No1 + No2;
+                        result = "The sum is : $sum";
+                        setState(() {});
+                      },
+                      child: Text('add'),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        var No1 = int.parse(no1.text.toString());
+                        var No2 = int.parse(no2.text.toString());
+
+                        var sum = No1 - No2;
+                        result = "The sum is : $sum";
+                        setState(() {});
+                      },
+                      child: Text('sub'),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          var No1 = int.parse(no1.text.toString());
+                          var No2 = int.parse(no2.text.toString());
+
+                          var sum = No1 * No2;
+                          result = "The sum is : $sum";
+                          setState(() {});
+                        },
+                        child: Text('mul')),
+                    ElevatedButton(
+                        onPressed: () {
+                          var No1 = int.parse(no1.text.toString());
+                          var No2 = int.parse(no2.text.toString());
+
+                          var sum = No1 / No2;
+                          result = "The sum is : $sum";
+                          setState(() {});
+                        },
+                        child: Text('div')),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(21),
+                child: Text(
+                  result,
+                  style: TextStyle(fontSize: 25, color: Colors.grey),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
